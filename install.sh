@@ -88,6 +88,10 @@ function install_deps() {
     winetricks -q -f origin
 }
 
+# Set dll to native,builtin
+function override_dll() {
+    wine reg add 'HKEY_CURRENT_USER\Software\Wine\DllOverrides' /v "${$1}" /d native,builtin /f >/dev/null 2>&1
+}
 
 echo "==> Removing Gatekeeper quarantine from downloaded wrapper. You may need to enter your password."
 sudo xattr -drs com.apple.quarantine "${PWD}/${WINESKIN_TARGET_NAME}" &>/dev/null
@@ -106,6 +110,8 @@ fi
 echo "==> Installing proprietary dependencies..."
 install_deps
 echo "==> Finished installing dependencies."
+
+override_dll d3dcompiler_47
 
 echo "==> Launching explorer"
 explorer
