@@ -75,12 +75,12 @@ function explorer() {
 #### End of Wineskin functions ####
 
 
-# add wine/wineprefix to $PATH
+# add wine/wineprefix to ENV
 export wineWrappers="${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources"
-export PATH="${wineWrappers}:${PATH}"
 export WINEDEBUG="-esync,-plugplay"
 export WINETRICKS_FALLBACK_LIBRARY_PATH="${PWD}/${WINESKIN_TARGET_NAME}/Contents/Frameworks"
 export WINEPREFIX="${PWD}/${WINESKIN_TARGET_NAME}/Contents/SharedSupport/prefix"
+export wine="${wineWrappers}/wine"
 
 
 function install_deps() {
