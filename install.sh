@@ -9,8 +9,7 @@ function wineskinlauncher() {
     ${PWD}/${WINESKIN_TARGET_NAME}/Contents/MacOS/wineskinlauncher "${@}"
 }
 
-
-#### start of wineskin functions ####
+#### start of Wineskin functions ####
 
 # Run an installer
 function installer() {
@@ -27,10 +26,11 @@ function cmd() {
     wineskinlauncher WSS-cmd
 }
 
+## TODO: Check if this command accepts flags
 # Run regedit app
-function regedit() {
-    wineskinlauncher WSS-regedit
-}
+#function regedit() {
+#    wineskinlauncher WSS-regedit
+#}
 
 # Run task manager
 function taskmgr() {
@@ -72,13 +72,22 @@ function explorer() {
     wineskinlauncher WSS-explorer
 }
 
-#### End of wineakin functions ####
+#### End of Wineskin functions ####
+
+
+# add wine/wineprefix to $PATH
+export wineWrappers="${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources"
+export PATH="${wineWrappers}:${PATH}"
+export WINEDEBUG="-esync,-plugplay"
+export WINETRICKS_FALLBACK_LIBRARY_PATH="${PWD}/${WINESKIN_TARGET_NAME}/Contents/Frameworks"
+export WINEPREFIX="${PWD}/${WINESKIN_TARGET_NAME}/Contents/SharedSupport/prefix"
 
 
 function install_deps() {
     echo "===> - Installing Origin"
     winetricks -q -f origin
 }
+
 
 echo "==> Removing Gatekeeper quarantine from downloaded wrapper. You may need to enter your password."
 sudo xattr -drs com.apple.quarantine "${PWD}/${WINESKIN_TARGET_NAME}" &>/dev/null
