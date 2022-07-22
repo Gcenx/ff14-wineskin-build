@@ -111,7 +111,8 @@ echo "==> Installing proprietary dependencies..."
 install_deps
 echo "==> Finished installing dependencies."
 
-override_dll d3dcompiler_47
+# The origin verb already installs this
+#override_dll d3dcompiler_47
 
 echo "==> Launching explorer"
 explorer
