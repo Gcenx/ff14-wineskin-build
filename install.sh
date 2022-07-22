@@ -3,17 +3,15 @@
 WINESKIN_TARGET_NAME="template_xiv_working.app"
 
 export wineWrappers="${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources"
-export winePATH="${PWD}/${WINESKIN_TARGET_NAME}/Contents/SharedSupport/wine/bin"
-export PATH="${wineWrappers}:${winePATH}:${PATH}"
-export WINEDEBUG="-all"
+export PATH="${wineWrappers}:${PATH}"
+export WINEDEBUG="-esync,-plugplay"
 
 # Workaround SIP DYLD_stripping
 # See https://support.apple.com/en-us/HT204899
 # See https://github.com/Winetricks/winetricks/pull/1820
 export WINETRICKS_FALLBACK_LIBRARY_PATH="${PWD}/${WINESKIN_TARGET_NAME}/Contents/Frameworks"
-export DYLD_FALLBACK_LIBRARY_PATH="${WINETRICKS_FALLBACK_LIBRARY_PATH}"
 
-export WINEPREFIX="${PWD}/${WINESKIN_TARGET_NAME}/Contents/Resources"
+export WINEPREFIX="${PWD}/${WINESKIN_TARGET_NAME}/Contents/SharedSupport/prefix"
 
 function install_deps() {
     echo "===> Installing dotnet48"
@@ -24,7 +22,6 @@ function install_deps() {
 	winetricks -q vcrun2012 &>/dev/null
     echo "===> Installing vcrun2010"
 	winetricks -q vcrun2010 &>/dev/null
-	#winetricks corefonts
 }
 
 echo "==> Removing Gatekeeper quarantine from downloaded wrapper. You may need to enter your password."
@@ -36,7 +33,7 @@ isWorkingEnv=$?
 
 if [ "$isWorkingEnv" != "0" ]; then
     echo "==> Could not find winetricks, downloading."
-    curl -o ${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks &>/dev/null
+    curl -o ${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources/winetricks https://raw.githubusercontent.com/The-Wineskin-Project/winetricks/macOS/src/winetricks &>/dev/null
     chmod +x ${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources/winetricks &>/dev/null
 fi
 
