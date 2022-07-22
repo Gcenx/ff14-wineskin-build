@@ -11,7 +11,7 @@ function wineskinlauncher() {
 
 #### start of wineskin functions ####
 
-# Installer is calling the program
+# Run an installer
 function installer() {
     wineskinlauncher WSS-installer "${@}"
 }
