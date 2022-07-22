@@ -16,12 +16,12 @@ function installer() {
     wineskinlauncher WSS-installer "${@}"
 }
 
-# Run winecfg
+# Launch winecfg
 function winecfg() {
     wineskinlauncher WSS-winecfg
 }
 
-# Run windows cmd
+# Launch windows cmd
 function cmd() {
     wineskinlauncher WSS-cmd
 }
@@ -32,12 +32,12 @@ function cmd() {
 #    wineskinlauncher WSS-regedit
 #}
 
-# Run task manager
+# Launch windows task manager
 function taskmgr() {
     wineskinlauncher WSS-taskmgr
 }
 
-# Run windows uninstaller
+# Launch windows uninstaller
 function uninstaller() {
     wineskinlauncher WSS-uninstaller
 }
@@ -67,7 +67,7 @@ function wineserverkill() {
     wineskinlauncher WSS-wineserverkill
 }
 
-# Open windows explorer menu (not a browser)
+# Launch windows explorer (not a browser)
 function explorer() {
     wineskinlauncher WSS-explorer
 }
