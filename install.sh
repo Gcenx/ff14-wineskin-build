@@ -1,6 +1,6 @@
 #!/usr/bin/env arch -x86_64 bash
 
-WINESKIN_TARGET_NAME="template_xiv_working.app"
+WINESKIN_TARGET_NAME="Origin.app"
 
 function wineskinlauncher() {
     ${PWD}/${WINESKIN_TARGET_NAME}/Contents/MacOS/wineskinlauncher "${@}"
@@ -15,17 +15,8 @@ function winetricks() {
 }
 
 function install_deps() {
-    echo "===> - Installing dotnet48"
-    winetricks -q -f dotnet48
-    echo "===> - Installing vcrun2015"
-    winetricks -q vcrun2015
-    echo "===> - Installing vcrun2012"
-    winetricks -q vcrun2012
-    echo "===> - Installing vcrun2010"
-    winetricks -q vcrun2010
-    echo "===> - Installing dxvk_macos"
-    winetricks dxvk_macos.verb
-    #winetricks corefonts
+    echo "===> - Installing Origin"
+    winetricks -q -f origin
 }
 
 echo "==> Removing Gatekeeper quarantine from downloaded wrapper. You may need to enter your password."
