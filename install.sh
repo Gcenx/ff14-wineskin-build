@@ -4,6 +4,7 @@ WINESKIN_TARGET_NAME="Origin.app"
 
 # Launch with unix path to open said file
 # Launch without command to load the default bat/cmd/exe
+# Launch WSS- commands, all wrapped below
 function wineskinlauncher() {
     ${PWD}/${WINESKIN_TARGET_NAME}/Contents/MacOS/wineskinlauncher "${@}"
 }
