@@ -77,7 +77,7 @@ function explorer() {
 
 # add wine/wineprefix to ENV
 export wineWrappers="${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources"
-export WINEDEBUG="-esync,-plugplay"
+export WINEDEBUG="-all"
 export WINETRICKS_FALLBACK_LIBRARY_PATH="${PWD}/${WINESKIN_TARGET_NAME}/Contents/Frameworks"
 export WINEPREFIX="${PWD}/${WINESKIN_TARGET_NAME}/Contents/SharedSupport/prefix"
 export wine="${wineWrappers}/wine"
