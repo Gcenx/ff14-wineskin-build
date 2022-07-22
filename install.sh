@@ -37,7 +37,8 @@ isWorkingEnv=$?
 
 if [ "$isWorkingEnv" != "0" ]; then
     echo "==> Could not find winetricks, downloading."
-    curl -o ${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks &>/dev/null
+    curl -o ${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources/winetricks https://raw.githubusercontent.com/The-Wineskin-Project/winetricks/macOS/src/winetricks
+ &>/dev/null
     chmod +x ${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources/winetricks &>/dev/null
 fi
 
