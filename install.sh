@@ -80,12 +80,11 @@ export wineWrappers="${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resour
 export WINEDEBUG="-all"
 export WINETRICKS_FALLBACK_LIBRARY_PATH="${PWD}/${WINESKIN_TARGET_NAME}/Contents/Frameworks"
 export WINEPREFIX="${PWD}/${WINESKIN_TARGET_NAME}/Contents/SharedSupport/prefix"
-export wine="${wineWrappers}/wine"
 
 
-function install_deps() {
-    echo "===> - Installing Origin"
-    winetricks -q -f origin
+# Wrap wine
+function wine() {
+    ${wineWrappers}/wine "${@}"
 }
 
 # Set dll to native,builtin
@@ -107,9 +106,8 @@ if [ "$isWorkingEnv" != "0" ]; then
     chmod +x ${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources/winetricks &>/dev/null
 fi
 
-echo "==> Installing proprietary dependencies..."
-install_deps
-echo "==> Finished installing dependencies."
+echo "===> - Installing Origin"
+winetricks -q -f origin
 
 # The origin verb already installs this
 #override_dll d3dcompiler_47
