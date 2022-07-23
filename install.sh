@@ -2,59 +2,13 @@
 
 WINESKIN_TARGET_NAME="Origin.app"
 
-# Launch with unix path to open said file
-# Launch without command to load the default bat/cmd/exe
-# Launch WSS- commands, all wrapped below
 function wineskinlauncher() {
     ${PWD}/${WINESKIN_TARGET_NAME}/Contents/MacOS/wineskinlauncher "${@}"
-}
-
-#### start of Wineskin functions ####
-
-# Run an installer
-function installer() {
-    wineskinlauncher WSS-installer "${@}"
-}
-
-# Launch winecfg
-function winecfg() {
-    wineskinlauncher WSS-winecfg
-}
-
-# Launch windows cmd
-function cmd() {
-    wineskinlauncher WSS-cmd
-}
-
-## TODO: Check if this command accepts flags
-# Run regedit app
-#function regedit() {
-#    wineskinlauncher WSS-regedit
-#}
-
-# Launch windows task manager
-function taskmgr() {
-    wineskinlauncher WSS-taskmgr
-}
-
-# Launch windows uninstaller
-function uninstaller() {
-    wineskinlauncher WSS-uninstaller
 }
 
 # Generate Wineskins prefix
 function wineprefixcreate() {
     wineskinlauncher WSS-wineprefixcreate
-}
-
-# Generate Wineskins prefix without settings
-function wineprefixcreatenoregs() {
-    wineskinlauncher WSS-wineprefixcreatenoregs
-}
-
-# Run wineboot
-function wineboot() {
-    wineskinlauncher WSS-wineboot
 }
 
 # Run winetricks
@@ -67,24 +21,12 @@ function wineserverkill() {
     wineskinlauncher WSS-wineserverkill
 }
 
-# Launch windows explorer (not a browser)
-function explorer() {
-    wineskinlauncher WSS-explorer
-}
-
-#### End of Wineskin functions ####
-
-
-# add wine/wineprefix to ENV
-export wineWrappers="${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources"
-export WINEDEBUG="-all"
-export WINETRICKS_FALLBACK_LIBRARY_PATH="${PWD}/${WINESKIN_TARGET_NAME}/Contents/Frameworks"
-export WINEPREFIX="${PWD}/${WINESKIN_TARGET_NAME}/Contents/SharedSupport/prefix"
-
-
 # Wrap wine
 function wine() {
-    ${wineWrappers}/wine "${@}"
+    export WINEDEBUG="-all"
+    export WINETRICKS_FALLBACK_LIBRARY_PATH="${PWD}/${WINESKIN_TARGET_NAME}/Contents/Frameworks"
+    export WINEPREFIX="${PWD}/${WINESKIN_TARGET_NAME}/Contents/SharedSupport/prefix"
+    ${PWD}/${WINESKIN_TARGET_NAME}/Wineskin.app/Contents/Resources/wine "${@}"
 }
 
 # Set dll to native,builtin
@@ -113,4 +55,4 @@ winetricks -q -f origin
 #override_dll d3dcompiler_47
 
 echo "==> Launching explorer"
-explorer
+wine explorer
