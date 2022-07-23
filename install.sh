@@ -3,6 +3,7 @@
 export TARGET_NAME="Origin.app"
 export WINETRICKS_FALLBACK_LIBRARY_PATH="${PWD}/${TARGET_NAME}/Contents/Frameworks"
 export WINEPREFIX="${PWD}/${TARGET_NAME}/Contents/SharedSupport/prefix"
+export WINEDEBUG="-all"
 
 function wineskinlauncher() {
     ${PWD}/${TARGET_NAME}/Contents/MacOS/wineskinlauncher "${@}"
@@ -25,7 +26,6 @@ function wineserverkill() {
 
 # Wrap wine
 function wine() {
-    export WINEDEBUG="-all"
     ${PWD}/${TARGET_NAME}/Wineskin.app/Contents/Resources/wine "${@}"
 }
 
